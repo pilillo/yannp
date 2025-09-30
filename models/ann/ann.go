@@ -1,12 +1,20 @@
 package ann
 
 import (
+	"math/rand"
+
+	"github.com/pilillo/yannp/shared/loss"
+	"github.com/pilillo/yannp/shared/optimizer"
 	"gonum.org/v1/gonum/mat"
 )
 
 type Ann interface {
 	Train(x, y *mat.Dense, numEpochs int, learningRate float64)
 	Predict(x *mat.Dense) *mat.Dense
+	SetLossFunction(lossFunction loss.LossFunction)
+	SetOptimizer(optimizer optimizer.Optimizer)
+	TrainWithValidation(x, y, valX, valY *mat.Dense, numEpochs int, learningRate float64) []float64
+	TrainWithEarlyStopping(x, y, valX, valY *mat.Dense, numEpochs int, learningRate float64, patience int) []float64
 }
 
 type ann struct {
@@ -70,4 +78,33 @@ func (ann *ann) Train(x, y *mat.Dense, numEpochs int, learningRate float64) {
 		}
 	}
 
+}
+
+// Enhanced method implementations for ann struct
+
+func (ann *ann) SetLossFunction(lossFunction loss.LossFunction) {
+	// Basic ann doesn't support custom loss functions
+}
+
+func (ann *ann) SetOptimizer(opt optimizer.Optimizer) {
+	// Basic ann doesn't support custom optimizers
+}
+
+func (ann *ann) TrainWithValidation(x, y, valX, valY *mat.Dense, numEpochs int, learningRate float64) []float64 {
+	// For basic ann, just train normally and return zeros for validation losses
+	ann.Train(x, y, numEpochs, learningRate)
+	return make([]float64, numEpochs)
+}
+
+func (ann *ann) TrainWithEarlyStopping(x, y, valX, valY *mat.Dense, numEpochs int, learningRate float64, patience int) []float64 {
+	// For basic ann, just train normally and return zeros for validation losses
+	ann.Train(x, y, numEpochs, learningRate)
+	return make([]float64, numEpochs)
+}
+
+func (ann *ann) Initialize(randGen *rand.Rand) {
+	// Initialize all layers
+	for _, layer := range ann.layers {
+		layer.Initialize(randGen)
+	}
 }

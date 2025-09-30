@@ -44,3 +44,71 @@ func (r reluActivation) Backward(x float64) float64 {
 		return 0.0
 	}
 }
+
+type tanhActivation struct{}
+
+func NewTanhActivation() tanhActivation {
+	return tanhActivation{}
+}
+
+func (t tanhActivation) Forward(x float64) float64 {
+	return math.Tanh(x)
+}
+
+func (t tanhActivation) Backward(x float64) float64 {
+	tanhX := math.Tanh(x)
+	return 1.0 - tanhX*tanhX
+}
+
+type leakyReluActivation struct {
+	alpha float64
+}
+
+func NewLeakyReluActivation(alpha float64) leakyReluActivation {
+	return leakyReluActivation{alpha: alpha}
+}
+
+func (l leakyReluActivation) Forward(x float64) float64 {
+	if x >= 0 {
+		return x
+	} else {
+		return l.alpha * x
+	}
+}
+
+func (l leakyReluActivation) Backward(x float64) float64 {
+	if x >= 0 {
+		return 1.0
+	} else {
+		return l.alpha
+	}
+}
+
+type eluActivation struct {
+	alpha float64
+}
+
+func NewEluActivation(alpha float64) eluActivation {
+	return eluActivation{alpha: alpha}
+}
+
+func (e eluActivation) Forward(x float64) float64 {
+	if x >= 0 {
+		return x
+	} else {
+		return e.alpha * (math.Exp(x) - 1.0)
+	}
+}
+
+func (e eluActivation) Backward(x float64) float64 {
+	if x >= 0 {
+		return 1.0
+	} else {
+		return e.alpha * math.Exp(x)
+	}
+}
+
+// Note: Softmax activation is not included here as it should be implemented
+// at the layer level rather than as a per-element activation function.
+// Softmax requires knowledge of all elements in the vector to compute
+// the normalized probabilities correctly.

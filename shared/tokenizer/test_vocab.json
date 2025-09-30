@@ -1,0 +1,31 @@
+{
+  "special_tokens": {
+    "PaddingToken": "\u003c|pad|\u003e",
+    "EndOfSequence": "\u003c|endoftext|\u003e",
+    "BeginningOfSeq": "\u003c|startoftext|\u003e",
+    "UnknownToken": "\u003c|unk|\u003e",
+    "MaskToken": "\u003c|mask|\u003e"
+  },
+  "vocab": {
+    "\u003c|endoftext|\u003e": 1,
+    "\u003c|mask|\u003e": 4,
+    "\u003c|pad|\u003e": 0,
+    "\u003c|startoftext|\u003e": 2,
+    "\u003c|unk|\u003e": 3,
+    "a": 14,
+    "c": 15,
+    "d": 11,
+    "e": 6,
+    "h": 5,
+    "he": 16,
+    "hell": 18,
+    "l": 7,
+    "ll": 17,
+    "o": 8,
+    "or": 19,
+    "p": 13,
+    "r": 10,
+    "t": 12,
+    "w": 9
+  }
+}

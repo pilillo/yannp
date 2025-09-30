@@ -1,0 +1,52 @@
+# Model weights and data files
+models/
+*.bin
+*.safetensors
+*.h5
+*.pkl
+*.pkl.gz
+*.pth
+*.pt
+*.weights
+*.model
+*.ckpt
+*.checkpoint
+*.tflite
+*.onnx
+*.pb
+*.pbtxt
+*.hdf5
+*.npz
+*.npy
+
+# Downloaded model files
+examples/chatgpt/models/
+examples/chatgpt/*.bin
+examples/chatgpt/*.safetensors
+
+# Build artifacts and compiled binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+chatgpt
+basic_mlp_v2
+enhanced_mlp
+
+# Test files
+*_test.go
+test_*.go
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

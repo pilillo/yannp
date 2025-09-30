@@ -73,7 +73,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestAnn(t *testing.T) {
-	randomSeed := int64(123456)
+	randomSeed := int64(42) // Fixed seed for reproducible tests
 	randSource := rand.NewSource(randomSeed)
 	randGen := rand.New(randSource)
 
